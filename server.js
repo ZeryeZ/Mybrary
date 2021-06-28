@@ -17,7 +17,7 @@ app.use(expressLayouts)
 app.use(express.static('public'))
 
 
-mongoose.connect(process.env.DATABASE_URI, { useNewUrlParser: true, useUnifiedTopology: true })
+mongoose.connect(process.env.DATABASE_URL, { useNewUrlParser: true, useUnifiedTopology: true })
 const db = mongoose.connection;
 db.on('error', error => console.log(error))
 db.once('open', () => console.log('connected to Mongoose'))
@@ -26,4 +26,4 @@ db.on('connected', () => console.log('working '))
 
 app.use('/', indexRouter)
 
-app.set(process.env.PORT)
+app.listen(process.env.PORT || 3000);
