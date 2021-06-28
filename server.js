@@ -26,4 +26,4 @@ db.on('connected', () => console.log('working '))
 
 app.use('/', indexRouter)
 
-app.listen(process.env.PORT || 3000)
+app.set(process.env.PORT || PORT)
