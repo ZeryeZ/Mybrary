@@ -1,10 +1,20 @@
+
 <h2>Search Authors</h2>
+
+<!-- form makes a form which contains different types of tools as label or input 
+     action in form determines the destination place and the method which is performed after the button is pressed
+-->
 <form action="/authors" method="GET">
-<label›Name</label>
-<input type="text" name=" name" value="<%= searchOptions.name  %> ">
-<button type="submit" >Search</button>
+    <label›Name</label>
+    <!-- input by the type text and the input will be assigned to name -->
+    <input type="text" name="name" value="<%= searchOptions.name  %> ">
+
+    <!-- Button of type submit (submit is default) by the name Search -->
+    <button type="submit" >Search</button>
+    
 </form>
 <br>
-<% authors.forEach(author => { %>
-    <div><%= author.name %></div>
+<!-- should represent for each author in authors the author name in a separate div -->
+<% authors.forEach(authors => { %>
+    <div><%= authors.name %></div>
 <%  }) %>

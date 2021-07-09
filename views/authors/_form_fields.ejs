@@ -1,2 +1,13 @@
+<!--
+    ejs = element javascript / elegant javascript 
+    and that combines javascript with html in one file
+    and lets you work with vars from other files 
+-->
+
 <label>Name</label>
-<input type="text" name="name" value="<%= author.name %>">
+
+<!-- type declares the type of the input like text/radio or other ones 
+     name is there to store the input value at in name
+     value holds the input and in this case that will be transferred to author.name in /models/authors.js and in there is a object author which takes name 
+-->
+<input type="text" name="name" value="<%= author.name %> ">
