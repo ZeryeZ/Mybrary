@@ -4,35 +4,32 @@
 */
 const express = require('express')
 const router = express.Router()
-const Author = require('../models/authors.js')
+const Author = require('../models/author.js')
 
 
 // All authors route
 // router is a middleware same as app but one instance under app its there to handle the req and res.
 router.get('/', async (req, res) => {
     
-    let searchOptions = {};
+    let searchOptions = {}
+   
 //  req.query.name ist was req= nachfrage query= abfrage nach etwas name= is the self made variable which is set equal to whatever you typed in
-//  RegExp creates a string with extras which allows you to search through a string and filter things youre looking for out of it 
+//  RegExp creates a string (\input\i in this case) with extras which allows you to search through a string and filter things youre looking for out of it 
     if (req.query.name != null && req.query.name !== '') {
-
-        searchOptions = new RegExp(req.query.name, 'i')
         
+        searchOptions.name = new RegExp(req.query.name, 'i')
     }
     try {
-        const authors = await Author.find(searchOptions);
-        // console.log(authors);  
+        const authors = await Author.find(searchOptions); 
         res.render('authors/index', { 
             authors: authors,
             searchOptions: req.query 
         })
     } catch {
-        // console.log("is redirecting");
-        res.redirect('/')
+        res.redirect('/') 
     }
     
 })
-
 
 // New Author Route
 router.get('/new', (req, res) => {

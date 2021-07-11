@@ -15,6 +15,6 @@
 </form>
 <br>
 <!-- should represent for each author in authors the author name in a separate div -->
-<% authors.forEach(authors => { %>
-    <div><%= authors.name %></div>
+<% authors.forEach(author => { %>
+    <div class="author-name"><%= author.name %></div>
 <%  }) %>
