@@ -19,7 +19,13 @@ router.get('/', async (req, res) => {
         
         searchOptions.name = new RegExp(req.query.name, 'i')
     }
+//  tries this block of code with try and if code gets error it will get to the catch section
     try {
+/*  Creates an array of the authors searched for
+    await is stopping the async function and waits for the operations to finish before it will go on.
+    Then renders the index.ejs file in authors folder. This takes the input of the authors array and the searchOptions of the input youre looking for
+    if not it redirects you to the main page
+*/
         const authors = await Author.find(searchOptions); 
         res.render('authors/index', { 
             authors: authors,
@@ -32,17 +38,22 @@ router.get('/', async (req, res) => {
 })
 
 // New Author Route
+// if you get send to the /new route this will render the new.ejs file and sets the author equal to a new Author object 
 router.get('/new', (req, res) => {
     res.render('authors/new', { author: new Author() })
     
 })
 
 // Create Author Route
+/* if youre on the creating site and then hit create you will send a POST request to the main .../authors page 
+   and this router.post will catch this POST request and first set author equal to the input you just send and then will tty to save the input into the DB 
+   and will redirect to the normal authors page if this doesnt work the catch will get you back to the creating page and will throw you an error
+*/
 router.post('/', async (req, res) => {
     const author = new Author({
         name: req.body.name
     })
-    console.log(author);
+    // console.log(author);
     try {
         const newAuthor = await author.save()
     //  res.redirect(`authors/${newAuthor.id}`)
